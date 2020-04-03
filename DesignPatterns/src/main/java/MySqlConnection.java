@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 
 /**
  *
- * @author danys
+ * @author Daniel Mesa
  */
-public class MySqlConnection implements Connection{
+public class MySqlConnection implements ConnectionDB{
     private static MySqlConnection connection;
-    private String user;
-    private String pass;
-    private String DB_URL;
-    private String JDBC_driver;
+    private Connection conec;
+    private String user = "root";
+    private String pass = "2611";
+    private String DB_URL = "jdbc:mysql://localhost:3306/receipts";
+    private String JDBC_driver = "com.mysql.jdbc.Driver";
+    
     private MySqlConnection(){}
     
     public static MySqlConnection getInstance(){
@@ -24,12 +24,22 @@ public class MySqlConnection implements Connection{
     }
     
     @Override
-    public void connectionOn(){
-        
+    public Connection connectionOn() throws Exception{
+        try{
+            conec = DriverManager.getConnection(DB_URL, user, pass);
+            Class.forName(JDBC_driver);
+            return conec;
+        }catch(Exception e){
+            throw e;
+        }
     }
     
     @Override
-    public void connectionOff(){
-        
+    public void connectionOff() throws Exception{
+        if(conec != null){
+            if(!conec.isClosed()){
+                conec.close();
+            }
+        }
     }
 }

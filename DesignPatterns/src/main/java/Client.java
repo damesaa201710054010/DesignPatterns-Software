@@ -6,7 +6,7 @@
 
 /**
  *
- * @author danys
+ * @author Daniel Mesa
  */
 public class Client {
     private int idClient;

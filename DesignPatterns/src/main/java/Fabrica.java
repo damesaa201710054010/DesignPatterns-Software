@@ -1,13 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
- * @author danys
+ * @author Daniel Mesa
  */
 public class Fabrica {
-    
+    public static ConnectionDB getConnection(String motor){
+        if(motor.equalsIgnoreCase("MySql")){
+            ConnectionDB c = MySqlConnection.getInstance();
+            return c;
+        }else if(motor.equalsIgnoreCase("ORACLE")){
+            ConnectionDB c = OracleConnection.getInstance();
+            return c;
+        }else
+        {
+            ConnectionDB c = MySqlConnection.getInstance();
+            return c;
+        }
+    }
 }

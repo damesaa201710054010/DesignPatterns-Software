@@ -1,17 +1,14 @@
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
- * @author danys
+ * @author Daniel Mesa
  */
 public class ClientDaoImpl implements ClientDao {
+    
     @Override
     public List<Client> getAll(){
         
@@ -30,6 +27,15 @@ public class ClientDaoImpl implements ClientDao {
     }
     @Override
     public void post(Client t){
-        
+        try{
+             ConnectionDB connect = Fabrica.getConnection("MySql");
+             Connection conec = connect.connectionOn();
+             PreparedStatement st = conec.prepareStatement("INSERT INTO Client (nombre) VALUES(?)");
+             st.setString(0, x);
+        }catch(Exception e){
+            
+        }finally {
+            
+        }
     }
 }

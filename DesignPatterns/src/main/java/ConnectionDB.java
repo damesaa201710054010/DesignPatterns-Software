@@ -1,3 +1,6 @@
+
+import java.sql.Connection;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,9 +9,9 @@
 
 /**
  *
- * @author danys
+ * @author Daniel Mesa
  */
-public interface Connection {
-    public void connectionOn();
-    public void connectionOff();
+public interface ConnectionDB {
+    public Connection connectionOn() throws Exception;
+    public void connectionOff() throws Exception;
 }
