@@ -1,2 +1,2 @@
 # DesignPatterns-Software
-This is the implementing for design patterns in Java
+This is a implementation of design patterns in Java
